@@ -1,0 +1,29 @@
+{
+  "name": "docsify-versioned-plugin",
+  "version": "0.0.1",
+  "description": " A docsify plugin that allows you to display multiple versions of your documentation. The users can switch between versions using a dropdown menu in the navigation bar.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UliGall/docsify-versioned-plugin.git"
+  },
+  "keywords": [
+    "docsify"
+  ],
+  "author": "Uli Gallersdörfer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UliGall/docsify-versioned-plugin/issues"
+  },
+  "homepage": "https://github.com/UliGall/docsify-versioned-plugin#readme",
+  "devDependencies": {
+    "docsify-cli": "^4.4.4"
+  },
+  "files": [
+  	"index.js",
+ 	 "styles.css"
+  ]
+}

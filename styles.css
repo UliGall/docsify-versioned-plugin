@@ -1,0 +1,40 @@
+/* App name */
+.app-name {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+/* Version selector container */
+.version-selector {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto 10px auto;
+    
+  }
+  
+  /* Version selector label */
+  .version-selector-label {
+    margin-right: 10px;
+  }
+  
+  /* Version selector dropdown */
+  .version-selector select {
+    font-size: 14px;
+    padding: 4px 8px;
+    color: #444;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    border-radius: 2px;
+    max-width: 200px; /* Adjust the maximum width of the dropdown to your preference */
+    width: 100%;
+  }
+  
+  .version-selector select:focus {
+    outline: none;
+    border-color: var(--selection-color);
+  }
+  
+  
