@@ -51,9 +51,33 @@ In your Markdown files, you can use the `{{versionLabel}}` placeholder to displa
 ```
 This will display the current version label (e.g., "v1.0.0" or "v2.0.0") next to the project title on the cover page.
 
+## Troubleshooting
+
+### Search Plugin
+If you want to use the search plugin and have the search limited to the current version, you can paste the following code in your `index.html` and create a separate name space for each version.
+
+```html
+<script>
+    (function() {
+      // Get the current version from the URL
+      const versionFolder = window.location.pathname.split('/')[1];
+  
+      // Set the search configuration based on the current version
+      window.$docsify.search = {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Search',
+        noData: 'No Results!',
+        depth: 2,
+        hideOtherSidebarContent: false,
+        namespace: 'docs-' + versionFolder // Set a unique namespace for each version
+      };
+    })();
+  </script>
+```
+
 ## Limitations
 Current limitations are as follows:
-- Search plugin does not properly work if the content found is not present in active version, 404 will be displayed.
 - Images or other assets need to be stored within the respective version-folder, a direct access to an outside folder is not possible.
 - Styling is adapted to `theme-simple`, might not look as good with other themes.
 
