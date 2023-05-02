@@ -4,6 +4,8 @@ The Docsify Versioned Plugin allows you to manage and display multiple versions 
 
 ![GitHub issues](https://img.shields.io/github/issues/UliGall/docsify-versioned-plugin) ![NPM](https://img.shields.io/npm/l/docsify-versioned-plugin) ![GitHub package.json version](https://img.shields.io/github/package-json/v/uligall/docsify-versioned-plugin)
 
+![](img/dropdown.gif)
+
 ## Installation
 
 1. Add the following script tag to your `index.html` file, preferably after the Docsify script:
