@@ -24,17 +24,17 @@ The Docsify Versioned Plugin allows you to manage and display multiple versions 
 
 In your index.html file, update the Docsify configuration to include the versions and default version:
 
-```html
+```js
 window.$docsify = {
   // ... Other configuration options
   versions: [
-    { folder: 'v1', label: 'v1.0.0', default: false },
     { folder: 'v2', label: 'v2.0.0', default: true },
+    { folder: 'v1', label: 'v1.0.0', default: false }
   ],
   versionSelectorLabel: 'Version',
 };
 ```
-Update the `versions` array with your version names and folders. Set the `default` property to `true` for the version you want to display by default.
+Update the `versions` array with your version names and folders. Set the `default` property to `true` for the version you want to display by default. The order of the array also defines the order in the dropdown.
 
 Make sure the respective folder exists. Labels can be updated without the need to change the folder name.
 
