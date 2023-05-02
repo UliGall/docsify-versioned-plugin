@@ -2,18 +2,20 @@
 
 The Docsify Versioned Plugin allows you to manage and display multiple versions of your documentation using a simple dropdown selector. Users can easily switch between different versions of the documentation, while the plugin ensures that the content and links are updated accordingly.
 
+![GitHub issues](https://img.shields.io/github/issues/UliGall/docsify-versioned-plugin) ![NPM](https://img.shields.io/npm/l/docsify-versioned-plugin) ![GitHub package.json version](https://img.shields.io/github/package-json/v/uligall/docsify-versioned-plugin)
+
 ## Installation
 
 1. Add the following script tag to your `index.html` file, preferably after the Docsify script:
 
 ```html
-<script src="index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify-versioned-plugin@0.0.1/index.js"></script>
 ```
 
 2. Add the following style tag to your index.html file to include the plugin's CSS:
 
 ```html
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-versioned-plugin@0.0.1/styles.css">
 ```
 
 ## Configuration
