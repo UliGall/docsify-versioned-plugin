@@ -31,11 +31,14 @@ window.$docsify = {
     { folder: 'v1', label: 'v1.0.0', default: false },
     { folder: 'v2', label: 'v2.0.0', default: true },
   ],
+  versionSelectorLabel: 'Version',
 };
 ```
 Update the `versions` array with your version names and folders. Set the `default` property to `true` for the version you want to display by default.
 
 Make sure the respective folder exists. Labels can be updated without the need to change the folder name.
+
+You can also update the `versionSelectorLabel`, if you want to change the label in front of the dropdown.
 
 ## Usage
 
