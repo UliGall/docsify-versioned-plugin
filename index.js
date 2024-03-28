@@ -15,9 +15,6 @@ function versionedDocsPlugin(hook, vm) {
     function updateVersion(version) {
         var newPath = vm.route.path.split('/').slice(1).join('/');
         var query = new URLSearchParams(vm.route.query).toString();
-        if (newPath === '' || newPath === 'README.md') {
-            newPath = '/';
-        }
         window.location.href = `/${version}/#/${newPath}?${query}`;
     };
 
