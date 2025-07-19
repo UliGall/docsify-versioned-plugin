@@ -6,20 +6,17 @@ function getVersionPath(path, versions, defaultVersion) {
     const parts = path.split('/');
     const version = versions.find((v) => v.folder === parts[1]);
     return version ? version.folder : defaultVersion;
-  }
+}
 
 function versionedDocsPlugin(hook, vm) {
     var versions = vm.config.versions || [];
     var defaultVersion = vm.config.versions.find((v) => v.default).folder;
-    
+
     function updateVersion(version) {
-        var newPath = vm.route.path.split('/').slice(2).join('/');
-        if (newPath === '' || newPath === 'README.md') {
-          newPath = '/';
-        }
-        window.location.href = '/' + version + newPath;
-        vm.basePath = '/' + version + newPath;
-    }
+        var newPath = vm.route.path.split('/').slice(1).join('/');
+        var query = new URLSearchParams(vm.route.query).toString();
+        window.location.href = `/${version}/#/${newPath}?${query}`;
+    };
 
     function initVersionSelector() {
         // Version selector
@@ -28,16 +25,15 @@ function versionedDocsPlugin(hook, vm) {
         selector.innerHTML = `
         <select>
             ${versions
-            .map(
-                (v) =>
-                `<option value="${v.folder}" ${
-                    v.default ? 'selected' : ''
-                }>${v.label}</option>`
-            )
-            .join('')}
+                .map(
+                    (v) =>
+                        `<option value="${v.folder}" ${v.default ? 'selected' : ''
+                        }>${v.label}</option>`
+                )
+                .join('')}
         </select>
         `;
-        
+
         // Adding event listener
         var versionPath = (window.location.pathname && window.location.pathname.split('/')[1]) || defaultVersion;
         selector.querySelector('select').value = versionPath;
@@ -51,7 +47,7 @@ function versionedDocsPlugin(hook, vm) {
         label.className = 'version-selector-label';
         label.textContent = labelText;
         selector.insertBefore(label, selector.querySelector('select'));
-        
+
         var nameEl = document.querySelector('.app-name');
         if (nameEl) {
             var versionLabel = versions.find((v) => v.folder === versionPath).label;
@@ -60,8 +56,8 @@ function versionedDocsPlugin(hook, vm) {
         }
         return selector;
     }
- 
-    hook.ready(function () {       
+
+    hook.ready(function () {
         // Set coverpage to false if it's not a versioned coverpage
         if (vm.route.path !== '/_coverpage.md') {
             vm.config.coverpage = false;
@@ -75,36 +71,36 @@ function versionedDocsPlugin(hook, vm) {
         // Replace {{versionLabel}} with the current version label in all markdown files
         var versionPath = getVersionPath(vm.compiler.contentBase, versions, defaultVersion);
         var version = versions.find((v) => v.folder === versionPath);
-        
-        if (version) {
-          var versionLabel = version.label;
-          var updatedHtml = html.replace(/{{versionLabel}}/g, versionLabel);
-          next(updatedHtml);
-        } else {
-          next(html);
-        }
-      });
 
-      hook.doneEach(function () {
+        if (version) {
+            var versionLabel = version.label;
+            var updatedHtml = html.replace(/{{versionLabel}}/g, versionLabel);
+            next(updatedHtml);
+        } else {
+            next(html);
+        }
+    });
+
+    hook.doneEach(function () {
         // Replace {{versionLabel}} with the current version label in coverpage
         var versionPath = getVersionPath(vm.compiler.contentBase, versions, defaultVersion);
         var version = versions.find((v) => v.folder === versionPath);
-        
+
         if (version) {
-          var versionLabel = version.label;
-          var cover = document.querySelector('.cover');
-          if (cover) {
-            cover.innerHTML = cover.innerHTML.replace(/{{versionLabel}}/g, versionLabel);
-          }
+            var versionLabel = version.label;
+            var cover = document.querySelector('.cover');
+            if (cover) {
+                cover.innerHTML = cover.innerHTML.replace(/{{versionLabel}}/g, versionLabel);
+            }
         }
-      });
+    });
 }
 
 window.$docsify.plugins = [].concat(versionedDocsPlugin, window.$docsify.plugins);
 
-(function() {
+(function () {
     if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-      var defaultVersion = window.$docsify.versions.find((v) => v.default).folder;
-      window.location.replace('/' + defaultVersion + '/');
+        var defaultVersion = window.$docsify.versions.find((v) => v.default).folder;
+        window.location.replace('/' + defaultVersion + '/');
     }
-  })();
+})();
